@@ -47,6 +47,15 @@
 
 /* USER CODE BEGIN PV */
 uint8_t rx_char;
+
+typedef enum{
+  MODE_OFF,
+  MODE_ON,
+  MODE_BLINK,
+  MODE_BLINK_FADE,
+} LedMode_t;
+
+LedMode_t led_mode = MODE_OFF;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -107,6 +116,25 @@ int main(void)
     if (HAL_UART_Receive(&huart2, &rx_char, 1, HAL_MAX_DELAY) == HAL_OK)
     {
       printf("Received: %c\r\n", rx_char);
+
+      switch (rx_char)
+      {
+        case 'o':
+          led_mode = MODE_ON;
+          break;
+        case 'x':
+          led_mode = MODE_OFF;
+          break;
+        case 'b':
+          led_mode = MODE_BLINK;
+          break;
+        case 'f':
+          led_mode = MODE_BLINK_FADE; 
+          break;
+        default:
+          printf("Unknown command: %c\r\n", rx_char);
+          break;
+      }
     }
     /* USER CODE END WHILE */
     
