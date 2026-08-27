@@ -1,33 +1,4 @@
-19:52:10 **** Incremental Build of configuration Debug for project STM32_UART_2 ****
-make -j8 all 
-arm-none-eabi-gcc "../Core/Src/adc.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/adc.d" -MT"Core/Src/adc.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/adc.o"
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "STM32_UART_2.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Repository\STM32_UART_2\STM32_UART_2\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_UART_2.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: STM32_UART_2.elf
- 
-arm-none-eabi-size  STM32_UART_2.elf 
-arm-none-eabi-objdump -h -S STM32_UART_2.elf  > "STM32_UART_2.list"
-   text	   data	    bss	    dec	    hex	filename
-  19212	    108	   2148	  21468	   53dc	STM32_UART_2.elf
-Finished building: default.size.stdout
- 
-Finished building: STM32_UART_2.list
- 
-19:52:20 **** Incremental Build of configuration Debug for project STM32_UART_2 ****
-make -j8 all 
-arm-none-eabi-size  STM32_UART_2.elf 
-   text	   data	    bss	    dec	    hex	filename
-  19212	    108	   2148	  21468	   53dc	STM32_UART_2.elf
-Finished building: default.size.stdout
- 
-19:54:23 **** Incremental Build of configuration Debug for project STM32_UART_2 ****
-make -j8 all 
-arm-none-eabi-size  STM32_UART_2.elf 
-   text	   data	    bss	    dec	    hex	filename
-  19212	    108	   2148	  21468	   53dc	STM32_UART_2.elf
-Finished building: default.size.stdout
- 
-19:59:00 **** Incremental Build of configuration Debug for project STM32_UART_2 ****
+20:58:57 **** Incremental Build of configuration Debug for project STM32_UART_2 ****
 make -j8 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 arm-none-eabi-gcc -o "STM32_UART_2.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Repository\STM32_UART_2\STM32_UART_2\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_UART_2.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
@@ -36,36 +7,15 @@ Finished building target: STM32_UART_2.elf
 arm-none-eabi-size  STM32_UART_2.elf 
 arm-none-eabi-objdump -h -S STM32_UART_2.elf  > "STM32_UART_2.list"
    text	   data	    bss	    dec	    hex	filename
-  19180	    108	   2148	  21436	   53bc	STM32_UART_2.elf
+  19484	    108	   2140	  21732	   54e4	STM32_UART_2.elf
 Finished building: default.size.stdout
  
 Finished building: STM32_UART_2.list
  
-20:10:09 **** Incremental Build of configuration Debug for project STM32_UART_2 ****
+20:59:06 **** Incremental Build of configuration Debug for project STM32_UART_2 ****
 make -j8 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "STM32_UART_2.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Repository\STM32_UART_2\STM32_UART_2\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_UART_2.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: STM32_UART_2.elf
- 
 arm-none-eabi-size  STM32_UART_2.elf 
-arm-none-eabi-objdump -h -S STM32_UART_2.elf  > "STM32_UART_2.list"
    text	   data	    bss	    dec	    hex	filename
-  19216	    108	   2148	  21472	   53e0	STM32_UART_2.elf
+  19484	    108	   2140	  21732	   54e4	STM32_UART_2.elf
 Finished building: default.size.stdout
- 
-Finished building: STM32_UART_2.list
- 
-20:23:04 **** Incremental Build of configuration Debug for project STM32_UART_2 ****
-make -j8 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "STM32_UART_2.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Repository\STM32_UART_2\STM32_UART_2\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_UART_2.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: STM32_UART_2.elf
- 
-arm-none-eabi-size  STM32_UART_2.elf 
-arm-none-eabi-objdump -h -S STM32_UART_2.elf  > "STM32_UART_2.list"
-   text	   data	    bss	    dec	    hex	filename
-  19200	    108	   2140	  21448	   53c8	STM32_UART_2.elf
-Finished building: default.size.stdout
- 
-Finished building: STM32_UART_2.list
  

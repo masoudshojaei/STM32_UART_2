@@ -54,8 +54,7 @@ typedef enum{
   MODE_ON,
   MODE_BLINK,
   MODE_BLINK_FADE,
-  MODE_ADC,
-  MODE_LED_ADJ
+  MODE_ADC
 } LedMode_t;
 
 LedMode_t led_mode = MODE_OFF;
@@ -66,7 +65,7 @@ uint8_t toggle_state = 0;
 
 /* Blink (fade) mode variables */
 int16_t pwm_duty = 0;
-int8_t fade_step = 50;
+int8_t fade_step = 20;
 uint32_t last_fade_tick = 0;
 
 /* ADC mode variables */
@@ -168,13 +167,6 @@ int main(void)
          led_mode = MODE_ADC;
          break;
 
-      case 'h':
-         led_mode = MODE_LED_ADJ;
-         pwm_duty = 0;
-				 fade_step = fade_step;
-				 last_fade_tick = HAL_GetTick();
-         break;
-
 			 default:
 				 printf("Unknown command: %c\r\n", rx_char);
 				 break;
@@ -237,35 +229,6 @@ int main(void)
        __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, pwm_duty);
        pwm_duty_percent = pwm_duty/10;
        break;
-
-       case MODE_LED_ADJ:
-       adc_value = Read_ADC_Channel(ADC_CHANNEL_0);
-       pwm_duty_percent = (adc_value * PWM_MAX) / 40950;
-			 /* Fade LED in/out (breathing effect) using PWM */
-			 if ((HAL_GetTick() - last_fade_tick) >= pwm_duty_percent)  /* update every 20 ms */
-			 {
-				 pwm_duty += fade_step;
-
-				 if (pwm_duty >= PWM_MAX)
-				 {
-					 //pwm_duty = PWM_MAX;
-					 fade_step = -fade_step;   /* reverse direction: fade down */
-				 }
-				 else if (pwm_duty <= PWM_MIN)
-				 {
-					 //pwm_duty = 1;
-					 fade_step = -fade_step;    /* reverse direction: fade up */
-				 }
-
-				 if(pwm_duty>PWM_MAX)
-					 pwm_duty = PWM_MAX;
-				 else if(pwm_duty<PWM_MIN)
-					 pwm_duty = PWM_MIN;
-
-				 __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, pwm_duty);
-				 last_fade_tick = HAL_GetTick();
-			 }
-			 break;
 	 };
     /* USER CODE END WHILE */
 
