@@ -124,6 +124,31 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* adcHandle)
 }
 
 /* USER CODE BEGIN 1 */
+uint32_t Read_ADC_Channel(uint32_t channel)
+{
+    uint32_t adc_value;
+    ADC_ChannelConfTypeDef sConfig;
 
+    // --- 1. Configure ADC Channel  ---
+    sConfig.Channel = channel; // Select channel 
+    sConfig.Rank = 1; // Set rank to 1
+    sConfig.SamplingTime = ADC_SAMPLETIME_15CYCLES; // Set sampling time
+    HAL_ADC_ConfigChannel(&hadc1, &sConfig); // Configure the channel
+
+    // --- 2. Start ADC Conversion ---
+    HAL_ADC_Start(&hadc1);
+
+    // --- 3. Wait for Conversion to Complete ---
+    HAL_ADC_PollForConversion(&hadc1, HAL_MAX_DELAY);
+
+    // --- 4. Read the 12-bit result ---
+    adc_value = HAL_ADC_GetValue(&hadc1);
+
+    // --- 5. Stop ADC Conversion ---
+    HAL_ADC_Stop(&hadc1);
+
+    return adc_value;
+
+}
 /* USER CODE END 1 */
 

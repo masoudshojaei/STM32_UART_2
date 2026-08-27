@@ -35,8 +35,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define PWM_MAX 999
-#define PWM_MIN 0
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -70,7 +69,7 @@ uint32_t last_fade_tick = 0;
 
 /* ADC mode variables */
 int16_t adc_value = 0;
-uint16_t pwm_duty_percent = 0;
+uint32_t last_adc_tick = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -165,6 +164,7 @@ int main(void)
 
       case 'a':
          led_mode = MODE_ADC;
+         last_adc_tick = HAL_GetTick();
          break;
 
 			 default:
@@ -178,12 +178,12 @@ int main(void)
 	 {
 		 case MODE_ON:
 			 /* 100% duty cycle = LED fully ON */
-			 __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, PWM_MAX);
+			 __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 999);
 			 break;
 
 		 case MODE_OFF:
 			 /* 0% duty cycle = LED fully OFF */
-			 __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, PWM_MIN);
+			 __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 0);
 			 break;
 
 		 case MODE_BLINK:
@@ -191,7 +191,7 @@ int main(void)
 			 if ((HAL_GetTick() - last_toggle_tick) >= 500)
 			 {
 				 toggle_state = !toggle_state;
-				 __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, toggle_state ? PWM_MAX : PWM_MIN);
+				 __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, toggle_state ? 999 : 0);
 				 last_toggle_tick = HAL_GetTick();
 			 }
 			 break;
@@ -202,21 +202,21 @@ int main(void)
 			 {
 				 pwm_duty += fade_step;
 
-				 if (pwm_duty >= PWM_MAX)
+				 if (pwm_duty >= 999)
 				 {
-					 //pwm_duty = PWM_MAX;
+					 //pwm_duty = 999;
 					 fade_step = -fade_step;   /* reverse direction: fade down */
 				 }
-				 else if (pwm_duty <= PWM_MIN)
+				 else if (pwm_duty <= 0)
 				 {
 					 //pwm_duty = 1;
 					 fade_step = -fade_step;    /* reverse direction: fade up */
 				 }
 
-				 if(pwm_duty>PWM_MAX)
-					 pwm_duty = PWM_MAX;
-				 else if(pwm_duty<PWM_MIN)
-					 pwm_duty = PWM_MIN;
+				 if(pwm_duty>999)
+					 pwm_duty = 999;
+				 else if(pwm_duty<0)
+					 pwm_duty = 0;
 
 				 __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, pwm_duty);
 				 last_fade_tick = HAL_GetTick();
@@ -225,9 +225,9 @@ int main(void)
 
        case MODE_ADC:
       adc_value = Read_ADC_Channel(ADC_CHANNEL_0);
-      pwm_duty = (adc_value * PWM_MAX) / 4095;
+      pwm_duty = (adc_value * 999) / 4095;
        __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, pwm_duty);
-       pwm_duty_percent = pwm_duty/10;
+       __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, pwm_duty/10);
        break;
 	 };
     /* USER CODE END WHILE */
